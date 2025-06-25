@@ -46,20 +46,7 @@ def get_valid_input(prompt, valid_choices):
             time.sleep(1)
             print(f"Invalid input. Please choose from {valid_choices}.")
 
-# Basically, instead of constantly typing the message, leaving blank lines and adding a timer, we can
-# do all at ONCE
-# Example Usage: delayed_print("You Need Food...", 1, 0)
-def delayed_print(message="", delay=1.5, blank_lines=1):
-    """
-    Args:
-        message (str): The message to display.
-        delay (int or float): Time to wait after printing the message (in seconds).
-        blank_lines (int): Number of blank lines to add after the message.
-    """
-    print(message)
-    time.sleep(delay)
-    if blank_lines > 0:
-        print("\n" * blank_lines, end="")
+
 
 # Clears the screen. THIS IS NOT USED INDIVIDUALLY
 # NOTE: os.system cls/clear didn't work so i had to do this...Try to see if u can fix

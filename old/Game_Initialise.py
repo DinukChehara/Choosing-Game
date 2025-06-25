@@ -1,6 +1,7 @@
 
-from Gamestate import Player, update_path, delayed_print
+from Gamestate import Player, update_path
 from Location_path import location_path
+from Utils import delayed_print
 
 # We could do some more here of course. This is the place you run the code from. From here, it gives the
 # user the rules. If you get it to work, you can also check whether mac/OS or Windows to do os.system
