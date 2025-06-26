@@ -19,3 +19,6 @@ def get_valid_input(prompt, valid_choices):
             clear_screen()
             time.sleep(1)
             print(f"Invalid input. Please choose from {valid_choices}.")
+
+def clear_screen():
+    print("\n" * 100)
