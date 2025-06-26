@@ -21,15 +21,15 @@ def location_path(player):
     print("")
 
     if fp_1 == 1:
-        import forest_path
-        update_path(player, "forest_path", forest_path.forest_path)
+        import Forest_path
+        update_path(player, "forest_path", Forest_path.forest_path)
     elif fp_1 == 2:
-        import City_path_module
-        update_path(player, "city_path", City_path_module.city_path)
+        import City_path
+        update_path(player, "city_path", City_path.city_path)
     elif fp_1 == 3:
-        import Mountains_path_module
-        update_path(player, "Mountains_path", Mountains_path_module.house_path)
+        import Marsh_path
+        update_path(player, "marsh_path", Marsh_path.marsh_path)
     elif fp_1 == 4:
-        import Pond_path_module
-        update_path(player, "forest_path", Pond_path_module.pond_path)
+        import Mountain_path
+        update_path(player, "mountain_path", Mountain_path.mountain_path)
 
