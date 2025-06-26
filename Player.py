@@ -13,7 +13,7 @@ class Player:
         self.visited_forest_locations = {}
         self.visited_city_locations = {}
 
-        self.unlocks = {"city": False, "mountain": False, "marsh": False}
+        self.unlocks = {"city": False, "mountain": False, "swamp": False}
         self.location = ""
         self.path = ""
         self.last_forest_location = ""
