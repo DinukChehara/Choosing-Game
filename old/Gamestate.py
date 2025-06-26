@@ -33,19 +33,6 @@ def update_last_forest_location(player, location):
     elif fp_7 == 2:
         update_location(player, "drink", drink)"""
 
-def get_valid_input(prompt, valid_choices):
-    while True:
-        try:
-            choice = int(input(prompt))
-            if choice in valid_choices:
-                return choice
-            else:
-                raise ValueError
-        except ValueError:
-            clear_screen()
-            time.sleep(1)
-            print(f"Invalid input. Please choose from {valid_choices}.")
-
 
 
 # Clears the screen. THIS IS NOT USED INDIVIDUALLY

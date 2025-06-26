@@ -1,5 +1,5 @@
-from Gamestate import get_valid_input, update_path
-from Utils import delayed_print
+from Gamestate import update_path
+from Utils import delayed_print, get_valid_input
 
 # This is what it will look like basically. So if you have unlocked this path (you can unlock a path by
 # reaching it for example going from city to forest), and you select that option, then you can go to

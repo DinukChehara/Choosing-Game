@@ -9,3 +9,5 @@ class Player:
 
     def updatePath(self, path):
         self.path = path
+
+    def
