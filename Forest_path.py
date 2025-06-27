@@ -4,4 +4,4 @@ from City_path import city_path
 from Restart_Player import handle_death, restart
 
 def forest_path(player):
-    pass
+    print(f"{player.path}")
