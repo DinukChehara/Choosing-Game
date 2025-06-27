@@ -1,4 +1,4 @@
-from Utils import delayed_print, get_valid_input
+from Utils import delayed_print, get_valid_input, import_path
 from Player import update_path
 from Forest_path import forest_path
 
@@ -8,28 +8,27 @@ from Forest_path import forest_path
 # It needs an improvement for sure tho
 
 def location_path(player):
-    delayed_print("You open your eyes. You don't know where you are but you see four possible places to go.", 1, 0)
+    delayed_print("You are walking down a small road but...", 2, 0)
+    delayed_print("You don't seem to be able to remember anything else...", 2, 1)
+    delayed_print("The Mountain road you been following for...a few hours?", 2, 0)
+    delayed_print("You must enter the city but the guards in front of that gate don't look friendly.", 2, 1)
 
     if player.unlocks["mountain"]:
-        fp_1 = get_valid_input("1. The Woods\n2. The City\n3. The Swamp\n4. The Mountains ",[1, 2, 3, 4])
+        fp_1 = get_valid_input("1. The Forest\n2. The City\n3. The Swamp\n4. The Mountains ",[1, 2, 3, 4])
     elif player.unlocks["swamp"]:
-        fp_1 = get_valid_input("1. The Woods\n2. The City\n3. The Swamp\n4. The Mountains (Locked) ",[1, 2, 3])
+        fp_1 = get_valid_input("1. The Forest\n2. The City\n3. The Swamp\n4. The Mountains (Locked) ",[1, 2, 3])
     elif player.unlocks["city"]:
-        fp_1 = get_valid_input("1. The Woods\n2. The City\n3. The Swamp (Locked)\n4. The Mountains (Locked) ",[1, 2])
+        fp_1 = get_valid_input("1. The Forest\n2. The City\n3. The Swamp (Locked)\n4. The Mountains (Locked) ",[1, 2])
     else:
-        fp_1 = get_valid_input("1. The Woods\n2. The City (Locked)\n3. The Swamp (Locked)\n4. The Mountains (Locked) ",[1])
+        fp_1 = get_valid_input("1. The Forest\n2. The City (Locked)\n3. The Swamp (Locked)\n4. The Mountains (Locked) ",[1])
 
 
     if fp_1 == 1:
-        import Forest_path
-        update_path(player, "forest_path", Forest_path.forest_path)
+        import_path(player, "forest_path")
     elif fp_1 == 2:
-        import City_path
-        update_path(player, "city_path", City_path.city_path)
+        import_path(player, "city_path")
     elif fp_1 == 3:
-        import Swamp_path
-        update_path(player, "swamp_path", Swamp_path.swamp_path)
+        import_path(player, "swamp_path")
     elif fp_1 == 4:
-        import Mountain_path
-        update_path(player, "mountain_path", Mountain_path.mountain_path)
+        import_path(player, "mountain_path")
 
