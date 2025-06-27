@@ -1,4 +1,6 @@
 import time
+import json
+
 from Utils import delayed_print
 
 class Player:
@@ -129,6 +131,35 @@ class Player:
         if item in self.city_items:
             self.city_items[item] = value
 
+    def save_game(self, slot_name):
+        """Saves the current game state to a named slot."""
+        save_data = {
+            "attributes": self.attributes,
+            "forest_items": self.forest_items,
+            "location": self.location,
+            "last_forest_location": self.last_forest_location,
+            "path": self.path,
+            # Add other attributes or items you want to save
+        }
+        # Save the data to a file or database using the slot_name
+        # For example:
+        with open(f"{slot_name}.sav", "w") as f:
+            json.dump(save_data, f)
+
+    def load_game(self, slot_name):
+        """Loads a saved game state from a named slot."""
+        try:
+            with open(f"{slot_name}.sav", "r") as f:
+                save_data = json.load(f)
+                self.attributes = save_data["attributes"]
+                self.forest_items = save_data["forest_items"]
+                self.location = save_data["location"]
+                self.last_forest_location = save_data["last_forest_location"]
+                self.path = save_data["path"]
+                # Load other attributes or items from the saved data
+            delayed_print("Game loaded!", 1, 0)
+        except FileNotFoundError:
+            delayed_print("Save slot not found!", 1, 0)
 
 # So, this basically just updates the path of the player.
 #Example Usage: update_path(player, "location_path", location_path)
