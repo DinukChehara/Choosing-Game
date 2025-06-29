@@ -1,7 +1,18 @@
-import time
-import json
+import json, os
+from fileinput import filename
+from zoneinfo import available_timezones
 
 from Utils import delayed_print
+
+saveFileName = "saves.json"
+
+default_data = {
+    "slots": {}
+}
+
+if not os.path.exists(saveFileName) or os.path.getsize(saveFileName) == 0:
+    with open(saveFileName, "w") as f:
+        json.dump(default_data, f)
 
 class Player:
     def __init__(self):
@@ -153,3 +164,26 @@ def update_last_forest_location(player, location):
 
 def update_last_city_location(player, location):
     player.last_city_location = location
+
+def save_forest_data(player : Player, slot_name : str, slot : int = None):
+    data : dict = {
+        "forest_attributes": player.forest_attributes,
+        "forest_items": player.forest_items,
+        "forest_locations": player.last_forest_location,
+        "visited_forest_locations": player.visited_forest_locations
+    }
+
+    with open(saveFileName, "r") as f:
+        json_data : dict = json.load(f)
+
+
+    if len(json_data["slots"])==5:
+        print("No more slots available")
+        return
+
+    if slot is None:
+        slot = len(json_data["slots"]) + 1
+
+    json_data["slots"][slot][slot_name] = data
+    with open(saveFileName, "w") as f:
+        json.dump({"slots" : json_data}, f, indent=3)
