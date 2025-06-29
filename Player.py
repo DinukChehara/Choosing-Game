@@ -20,10 +20,10 @@ class Player:
         self.forest_attributes = {"courage": False, "coward": False, "smart": False, "foolish": False}
         self.city_attributes = {"courage": False, "coward": False, "smart": False, "foolish": False}
 
-        self.forest_items = {}
+        self.forest_items = {"Test_1": True, "Test_2": False, "Test_3": False}
         self.city_items = {}
 
-        self.visited_forest_locations = {}
+        self.visited_forest_locations = {"Test_1": False, "Test_2": False, "Test_3": False,}
         self.visited_city_locations = {}
 
         self.unlocks = {"city": False, "mountain": False, "swamp": False}
@@ -165,25 +165,56 @@ def update_last_forest_location(player, location):
 def update_last_city_location(player, location):
     player.last_city_location = location
 
-def save_forest_data(player : Player, slot_name : str, slot : int = None):
-    data : dict = {
+def prompt_save_forest_data(player):
+    slot_name = input("Enter a name for your save slot: ")
+    slot_input = input("Enter a slot number (or leave blank for next available): ")
+    slot = int(slot_input) if slot_input.strip() else None
+    save_forest_data(player, slot_name, slot)
+import json
+
+def save_forest_data(player, slot_name, slot=None):
+    data = {
         "forest_attributes": player.forest_attributes,
         "forest_items": player.forest_items,
         "forest_locations": player.last_forest_location,
         "visited_forest_locations": player.visited_forest_locations
     }
 
-    with open(saveFileName, "r") as f:
-        json_data : dict = json.load(f)
+    # Check if data is serializable
+    try:
+        json.dumps(data)
+    except TypeError as e:
+        print("Serialization error in save_forest_data:", e)
+        for key, value in data.items():
+            try:
+                json.dumps(value)
+            except TypeError:
+                print(f"Key '{key}' is not serializable. Value: {value}")
+        return
 
+    # Read and update save file
+    try:
+        with open(saveFileName, "r") as f:
+            json_data = json.load(f)
+    except Exception as e:
+        print("Error reading save file:", e)
+        return
 
-    if len(json_data["slots"])==5:
+    if len(json_data.get("slots", {})) == 5:
         print("No more slots available")
         return
 
     if slot is None:
         slot = len(json_data["slots"]) + 1
 
-    json_data["slots"][slot][slot_name] = data
-    with open(saveFileName, "w") as f:
-        json.dump({"slots" : json_data}, f, indent=3)
+    if str(slot) not in json_data["slots"]:
+        json_data["slots"][str(slot)] = {}
+
+    json_data["slots"][str(slot)][slot_name] = data
+
+    # Write to save file
+    try:
+        with open(saveFileName, "w") as f:
+            json.dump(json_data, f, indent=3)
+    except Exception as e:
+        print("Error writing to save file:", e)

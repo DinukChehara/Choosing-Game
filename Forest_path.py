@@ -12,7 +12,7 @@ def forest_path(player):
     # Want to make this a timed challenge somehow where if you take  too long, you die
 
     start_time = time.time()
-    fp_1 = get_valid_input("Think Fast! Will you:\n1. Confront the danger\n2. Run", [1, 2])
+    fp_1 = get_valid_input("Think Fast! Will you:\n1. Confront the danger\n2. Run\n3. Test the Code out", [1, 2, 3])
     end_time = time.time()
     elapsed_time = end_time - start_time
     if elapsed_time > 13:
@@ -23,6 +23,48 @@ def forest_path(player):
             update_location(player, confront_path)
         elif fp_1 == 2:
             update_location(player, avoid_path)
+        elif fp_1 == 3:
+            update_location(player, test)
+
+def test(player):
+    print("Testing")
+    player.update_courage(is_courageous=True)
+    test_01 =  get_valid_input("1, 2, 3, 4, 5",[1, 2, 3, 4, 5])
+    if test_01 == 1:
+        update_location(player, test_1)
+    elif test_01 == 2:
+        update_location(player, test_2)
+    elif test_01 == 3:
+        update_location(player, test_3)
+    elif test_01 == 2:
+        update_location(player, test_4)
+    elif test_01 == 3:
+        update_location(player, test_5)
+
+def test_1(player):
+    player.update_smart(is_intelligent=False)
+    update_path(player, city_path)
+
+def test_2(player):
+    player.update_forest_items("test_item", True)
+    update_path(player, city_path)
+    player.update_visited_forest_locations("test_location_3", True)
+
+def test_3(player):
+    player.update_forest_items("test_item_2", True)
+    update_path(player, city_path)
+    player.update_visited_forest_locations("test_location_3", True)
+
+def test_4(player):
+    player.update_visited_forest_locations("test_location_2", True)
+    player.update_forest_items("test_item_3", True)
+    update_path(player, city_path)
+
+def test_5(player):
+    player.update_courage(is_courageous=False)
+    player.update_visited_forest_locations("test_location", True)
+    update_path(player, city_path)
+
 
 # Leads back to
 def confront_path(player):
