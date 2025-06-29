@@ -6,9 +6,9 @@ from Location_path import location_path
 # user the rules. If you get it to work, you can also check whether mac/OS or Windows to do os.system
 def game_initialise():
     print("")
-    delayed_print("This is a choice based adventure. Read the text and press the given number to make your choice!", 1.5, 0)
-    delayed_print("Remember, deaths make you lose all attributes!", 1.5, 0)
-    delayed_print("When you reach the next stage, your game will be saved.", 3, 2)
+    delayed_print("This is a choice based adventure. Read the text and press the given number to make your choice!", 1, 0)
+    delayed_print("Remember, deaths make you lose all attributes!", 1, 0)
+    delayed_print("When you reach the next stage, your game will be saved.", 1, 2)
     player = Player()
 
     # Will Lead to Location path...

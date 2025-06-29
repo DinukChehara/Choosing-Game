@@ -10,6 +10,7 @@ def delayed_print(message="", delay=1.5, blank_lines=1):
 
 def get_valid_input(prompt, valid_choices):
     while True:
+        prompt += "\n\nYou Pick: "
         try:
             choice = int(input(prompt))
             if choice in valid_choices:

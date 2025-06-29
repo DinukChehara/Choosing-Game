@@ -7,12 +7,12 @@ import random
 # It needs an improvement for sure tho
 
 def location_path(player):
-    delayed_print("You are walking down a small road but...", 2, 0)
-    delayed_print("You don't seem to be able to remember anything else...", 2, 0)
-    delayed_print("The Mountain road you been following for...a few hours?", 2, 1)
-    delayed_print("You must enter the city but the guards in front of that gate don't look friendly.", 2, 0)
-    delayed_print("The swamp contains some of the most dangerous animals in the kingdom...", 2, 0)
-    delayed_print("And the mountains where you came from are- wait. Best not talk about that...", 2, 1)
+    delayed_print("You are walking down a small road but...", 1, 0)
+    delayed_print("You don't seem to be able to remember anything else...", 1, 0)
+    delayed_print("The Mountain road you been following for...a few hours?", 1, 1)
+    delayed_print("You must enter the city but the guards in front of that gate don't look friendly.", 1, 0)
+    delayed_print("The swamp contains some of the most dangerous animals in the kingdom...", 1, 0)
+    delayed_print("And the mountains where you came from are- wait. Best not talk about that...", 1, 1)
 
     if player.unlocks["mountain"]:
         fp_1 = get_valid_input("1. The Forest\n2. The City\n3. The Swamp\n4. The Mountains ",[1, 2, 3, 4])

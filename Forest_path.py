@@ -5,9 +5,9 @@ from City_path import city_path
 from Restart_Player import handle_death, restart
 
 def forest_path(player):
-    delayed_print("You decide to enter the Forest. A small opening in the trees reveal a path.", 2, 0)
-    delayed_print("The path goes in on in a direction that will eventually lead you to the City.", 2, 0)
-    delayed_print("However, the soft crunch of leaves on your left grabs your attention!", 1.5, 1)
+    delayed_print("You decide to enter the Forest. A small opening in the trees reveal a path.", 1, 0)
+    delayed_print("The path goes in on in a direction that will eventually lead you to the City.", 1, 0)
+    delayed_print("However, the soft crunch of leaves on your left grabs your attention!", 1, 1)
 
     # Want to make this a timed challenge somehow where if you take  too long, you die
 
@@ -15,7 +15,7 @@ def forest_path(player):
     fp_1 = get_valid_input("Think Fast! Will you:\n1. Confront the danger\n2. Run", [1, 2])
     end_time = time.time()
     elapsed_time = end_time - start_time
-    if elapsed_time > 5:
+    if elapsed_time > 13:
         delayed_print("You took too long...", 2, 1)
         update_location(player, secret_path)
     else:
@@ -33,10 +33,13 @@ def confront_path(player):
 
 def avoid_path(player):
     delayed_print("You sprint away. Whatever was spying on you has been left far behind...", 2, 1)
-    update_location(player, confront_path)
+    player.update_courage(is_courageous=False)
+    update_location(player, continuing_path)
 
 def continuing_path(player):
-    pass
+    delayed_print("As you continue walking down the path, you come up against a crossroads.")
+
+    get_valid_input("Where will you go?\n1. Left\n2. Right", [1, 2])
 
 def secret_path(player):
     pass
