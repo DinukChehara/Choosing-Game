@@ -1,4 +1,4 @@
-import json, os
+import json, os, types
 from fileinput import filename
 from zoneinfo import available_timezones
 
@@ -172,6 +172,16 @@ def prompt_save_forest_data(player):
     save_forest_data(player, slot_name, slot)
 import json
 
+def serialize_functions_as_names(data):
+    if isinstance(data, dict):
+        return {k: serialize_functions_as_names(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [serialize_functions_as_names(v) for v in data]
+    elif isinstance(data, types.FunctionType):
+        return data.__name__
+    else:
+        return data
+
 def save_forest_data(player, slot_name, slot=None):
     data = {
         "forest_attributes": player.forest_attributes,
@@ -180,19 +190,15 @@ def save_forest_data(player, slot_name, slot=None):
         "visited_forest_locations": player.visited_forest_locations
     }
 
-    # Check if data is serializable
+    # Convert functions to their names
+    data = serialize_functions_as_names(data)
+
     try:
         json.dumps(data)
     except TypeError as e:
         print("Serialization error in save_forest_data:", e)
-        for key, value in data.items():
-            try:
-                json.dumps(value)
-            except TypeError:
-                print(f"Key '{key}' is not serializable. Value: {value}")
         return
 
-    # Read and update save file
     try:
         with open(saveFileName, "r") as f:
             json_data = json.load(f)
@@ -212,7 +218,6 @@ def save_forest_data(player, slot_name, slot=None):
 
     json_data["slots"][str(slot)][slot_name] = data
 
-    # Write to save file
     try:
         with open(saveFileName, "w") as f:
             json.dump(json_data, f, indent=3)
