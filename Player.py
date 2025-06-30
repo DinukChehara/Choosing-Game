@@ -144,20 +144,20 @@ class Player:
 
 # So, this basically just updates the path of the player.
 #Example Usage: update_path(player, "location_path", location_path)
-def update_path(player, new_path):
-    player.path = str(new_path)
-    new_path(player)
+def update_path(player, new_path, next_function):
+    player.path = new_path
+    next_function(player)
 
 # SOOOO...When you change the location of the player, use update location, and it will save that location
 # according to the path
 # Example Usage: update_location(player, "dinuks_house", dinuks_house)
-def update_location(player, new_location):
-    player.location = str(new_location)
+def update_location(player, new_location, next_function):
+    player.location = new_location
     if player.path == "forest_path":
         update_last_forest_location(player,new_location)
     elif player.path == "city_path":
         update_last_city_location(player,new_location)
-    new_location(player)
+    next_function(player)
 
 def update_last_forest_location(player, location):
     player.last_forest_location = location
@@ -166,11 +166,12 @@ def update_last_city_location(player, location):
     player.last_city_location = location
 
 def prompt_save_forest_data(player):
+    delayed_print("You have entered the city.", 3, 1)
     slot_name = input("Enter a name for your save slot: ")
     slot_input = input("Enter a slot number (or leave blank for next available): ")
     slot = int(slot_input) if slot_input.strip() else None
     save_forest_data(player, slot_name, slot)
-import json
+    delayed_print("Your progress has been saved.", 3, 1)
 
 def serialize_functions_as_names(data):
     if isinstance(data, dict):

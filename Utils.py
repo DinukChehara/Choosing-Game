@@ -33,7 +33,7 @@ def import_path(player, path):
     func = getattr(module, f"{normalized}_path")
     func(player)
 
-def check(player):
+def error_check(player):
     delayed_print("This will check that everything is working as expected", 2)
     print("Player Check:")
     print(f"  Name: {getattr(player, 'name', 'N/A')}")

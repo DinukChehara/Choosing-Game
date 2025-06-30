@@ -13,7 +13,7 @@ def game_initialise():
 
     # Will Lead to Location path...
     while True:
-        update_path(player, location_path)
+        update_path(player, "location_path", location_path)
 
 
 while True:
