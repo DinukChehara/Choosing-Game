@@ -1,4 +1,4 @@
-from Player import Player, update_path
+from Player import Player
 from Utils import delayed_print
 from Location_path import location_path
 
@@ -13,7 +13,7 @@ def game_initialise():
 
     # Will Lead to Location path...
     while True:
-        update_path(player, "location_path", location_path)
+        player.update_path("location_path", location_path)
 
 
 while True:

@@ -2,7 +2,7 @@ import time
 import importlib
 
 # prints a message with a delay and blank lines
-def delayed_print(message="", delay=1.5, blank_lines=1):
+def delayed_print(message="", delay=1.5, blank_lines=0):
     print(message)
     time.sleep(delay)
     if blank_lines > 0:
@@ -34,10 +34,13 @@ def import_path(player, path):
     func(player)
 
 def error_check(player):
-    delayed_print("This will check that everything is working as expected", 2)
-    print("Player Check:")
-    print(f"  Name: {getattr(player, 'name', 'N/A')}")
-    print(f"  Location: {getattr(player, 'location', 'N/A')}")
-    print(f"  Path: {getattr(player, 'path', 'N/A')}")
-    print(f"  Attributes: {getattr(player, 'attributes', 'N/A')}")
-    print(f"  Items: {getattr(player, 'items', 'N/A')}")
+    delayed_print("This will check that everything is working as expected", 2, 1)
+    delayed_print("Player Check:", 2)
+    delayed_print(f"  Name: {getattr(player, 'name', 'N/A')}", 2)
+    delayed_print(f"  Location: {getattr(player, 'location', 'N/A')}", 2)
+    delayed_print(f"  Path: {getattr(player, 'path', 'N/A')}", 2)
+    delayed_print(f"  Attributes: {getattr(player, 'attributes', 'N/A')}", 2)
+    delayed_print(f"  Items: {getattr(player, 'items', 'N/A')}", 2, 1)
+    delayed_print("Check complete. If you see any unexpected result, fix it. N/A is nothing to worry about.", 3)
+    delayed_print("Unless the player s supposed have an item/attribute....", 3, 1)
+

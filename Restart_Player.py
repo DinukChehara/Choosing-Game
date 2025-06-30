@@ -1,5 +1,4 @@
 from Utils import clear_screen, delayed_print, import_path
-from Player import update_path
 
 def restart(player):
     while True:
@@ -36,7 +35,7 @@ def restart_forest_path(player):
     if response == "y":
         from Location_path import location_path
         delayed_print("Restarting...", 1, 0)
-        update_path(player, "location_path", location_path)
+        player.update_path("location_path", location_path)
     elif response == "n":
         import_path(player, "forest_path")
 
@@ -53,7 +52,7 @@ def restart_city_path(player):
         from Location_path import location_path
         delayed_print("Restarting...", 1, 0)
         player.location = ""
-        update_path(player, "location_path", location_path)
+        player.update_path("location_path", location_path)
 
     elif response == "n":
         import_path(player, "city_path")
@@ -65,7 +64,7 @@ def restart_swamp_path(player):
     if response == "y":
         from Location_path import location_path
         delayed_print("Restarting...", 1, 0)
-        update_path(player, "location_path", location_path)
+        player.update_path("location_path", location_path)
     elif response == "n":
         import_path(player, "swamp_path")
 
@@ -76,7 +75,7 @@ def restart_mountains_path(player):
     if response == "y":
         from Location_path import location_path
         delayed_print("Restarting...", 1, 0)
-        update_path(player, "location_path", location_path)
+        player.update_path("location_path", location_path)
     elif response == "n":
         import_path(player, "mountain_path")
 
