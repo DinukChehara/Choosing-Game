@@ -19,16 +19,17 @@ class Player:
         self.forest_attributes = {"courage": False, "coward": False, "smart": False, "foolish": False}
         self.city_attributes = {"courage": False, "coward": False, "smart": False, "foolish": False}
 
-        self.forest_items = {"Test_1": True, "Test_2": False, "Test_3": False}
+        self.forest_items = {}
         self.city_items = {}
 
-        self.visited_forest_locations = {"Test_1": False, "Test_2": False, "Test_3": False,}
+        self.visited_forest_locations = {}
         self.visited_city_locations = {}
 
         self.unlocks = {"city": False, "mountain": False, "swamp": False}
         self.location = ""
         self.path = ""
         self.last_forest_location = ""
+        self.last_city_location = ""
 
     # For ONLY the self.attributes
     def update_attributes(self, attribute, value):

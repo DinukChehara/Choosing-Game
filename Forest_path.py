@@ -11,7 +11,7 @@ def forest_path(player):
     # Want to make this a timed challenge somehow where if you take  too long, you die
 
     start_time = time.time()
-    fp_1 = get_valid_input("Think Fast! Will you:\n1. Confront the danger\n2. Run\n3. Test the Code out", [1, 2, 3])
+    fp_1 = get_valid_input("Think Fast! Will you:\n1. Confront the danger\n2. Run", [1, 2])
     end_time = time.time()
     elapsed_time = end_time - start_time
     if elapsed_time > 13:
@@ -22,42 +22,6 @@ def forest_path(player):
             player.update_location("confront_path", confront_path)
         elif fp_1 == 2:
             player.update_location("avoid_path", avoid_path)
-        elif fp_1 == 3:
-            player.update_location("test", test)
-
-def test(player):
-    print("Testing")
-    player.update_courage(is_courageous=True)
-    test_01 = get_valid_input("1, 2, 3, 4, 5", [1, 2, 3, 4, 5])
-    if test_01 == 1:
-        player.update_location("test_1", test_1)
-    elif test_01 == 2:
-        player.update_location("test_2", test_2)
-    elif test_01 == 3:
-        player.update_location("test_3", test_3)
-    elif test_01 == 4:
-        player.update_location("test_4", test_4)
-    elif test_01 == 5:
-        player.update_location("test_5", test_5)
-def test_1(player):
-    player.update_smart(is_intelligent=False)
-    player.update_path("city_path", city_path)
-def test_2(player):
-    player.update_forest_items("test_item", True)
-    player.update_path("city_path", city_path)
-    player.update_visited_forest_locations("test_location_3", True)
-def test_3(player):
-    player.update_forest_items("test_item_2", True)
-    player.update_path("city_path", city_path)
-    player.update_visited_forest_locations("test_location_3", True)
-def test_4(player):
-    player.update_visited_forest_locations("test_location_2", True)
-    player.update_forest_items("test_item_3", True)
-    player.update_path("city_path", city_path)
-def test_5(player):
-    player.update_courage(is_courageous=False)
-    player.update_visited_forest_locations("test_location", True)
-    player.update_path("city_path", city_path)
 
 def confront_path(player):
     delayed_print("'Reveal yourself if you dare!' You shout out bravely.", 2, 0)
