@@ -80,10 +80,6 @@ class Player:
                 self.update_forest_attributes("courage", True)
                 self.update_forest_attributes("coward", False)
 
-            elif self.path == "city_path":
-                self.update_city_attributes("courage", True)
-                self.update_city_attributes("coward", False)
-
             delayed_print("You feel Courageous.", 1, 1)
 
         else:
@@ -93,10 +89,6 @@ class Player:
             if self.path == "forest_path":
                 self.update_forest_attributes("courage", False)
                 self.update_forest_attributes("coward", True)
-
-            elif self.path == "city_path":
-                self.update_city_attributes("courage", False)
-                self.update_city_attributes("coward", True)
 
             delayed_print("You start to feel cowardly.", 1, 1)
     def update_smart(self, is_intelligent):
@@ -108,10 +100,6 @@ class Player:
                 self.update_forest_attributes("smart", True)
                 self.update_forest_attributes("foolish", False)
 
-            elif self.path == "city_path":
-                self.update_city_attributes("smart", True)
-                self.update_city_attributes("foolish", False)
-
             delayed_print("You feel Intelligent.", 1,1)
         else:
             self.update_attributes("smart", False)
@@ -120,10 +108,6 @@ class Player:
             if self.path == "forest_path":
                 self.update_forest_attributes("smart", False)
                 self.update_forest_attributes("foolish", True)
-
-            elif self.path == "city_path":
-                self.update_city_attributes("smart", False)
-                self.update_city_attributes("foolish", True)
 
             delayed_print("You start to feel Foolish.", 1, 1)
 

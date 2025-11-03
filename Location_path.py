@@ -30,24 +30,24 @@ def location_path(player):
 
     elif fp_1 == 2:
         if not player.unlocks["city"]:
-            forest_rebuff = ["As you approach the great City walls, the guards sneer at you. You decide to back off...",
+            city_rebuff = ["As you approach the great City walls, the guards sneer at you. You decide to back off...",
                              "As you approach the great City walls, the guard shouts: 'No visitors at this hour!'.\nYou slowly back off...",
                              "The guards move away and you try to enter the city, but the gates are locked. You'll have to find another way in.",
                              "The city is bustling with activity, but the guards won't let you in. You'll have to try again later.",
                              "You're not allowed in the city right now. Maybe you can find a way to unlock it later."]
-            rand_forest = random.choice(forest_rebuff)
+            rand_forest = random.choice(city_rebuff)
             delayed_print(f"{rand_forest}", 3, 1)
         else:
             import_path(player, "city")
 
     elif fp_1 == 3:
         if not player.unlocks["swamp"]:
-            city_rebuff = ["You begin to enter but your foot immediately sinks in to the mushy ground. You nearly pull your foot out trying to get out...",
+            swamp_rebuff = ["You begin to enter but your foot immediately sinks in to the mushy ground. You nearly pull your foot out trying to get out...",
                            "As you step into the swamp, you sink into the mud up to your knees. You're not going anywhere.",
                            "The swamp is treacherous, and you're not prepared to face its dangers. You turn back.",
                            "You try to enter the swamp, but the trees seem to close in around you. You're not welcome here.",
                            "The swamp is home to many dangers, and you're not ready to face them. Come back later."]
-            rand_city = random.choice(city_rebuff)
+            rand_city = random.choice(swamp_rebuff)
             delayed_print(f"{rand_city}", 3, 1)
         else:
             import_path(player, "swamp")
