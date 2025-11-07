@@ -24,6 +24,8 @@ def yes_no_input(prompt):
 # and reset attributes, items and location
 
 def restart_forest_path(player):
+    player.think = 0
+
     player.reset_attributes()
     player.reset_forest_attributes()
     player.location = ""

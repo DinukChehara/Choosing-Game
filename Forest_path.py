@@ -3,6 +3,8 @@ from Utils import delayed_print, get_valid_input
 from City_path import city_path
 from Restart_Player import handle_death, restart
 
+"""BTW Delayed print will on be having 1 second pause so its faster to test. we'll change time later."""
+
 def forest_path(player):
     delayed_print("You decide to enter the Forest. A small opening in the trees reveal a path.", 1, 0)
     delayed_print("The path goes in on in the opposite direction of the City.", 1, 0)
@@ -15,7 +17,7 @@ def forest_path(player):
     end_time = time.time()
     elapsed_time = end_time - start_time
     if elapsed_time > 10:
-        delayed_print("You took too long. A shadows looms up in front of you...", 2, 1)
+        delayed_print("You took too long. A shadows looms up in front of you...", 1, 1)
         player.update_location("secret_path", secret_path)
     else:
         if fp_1 == 1:
@@ -24,13 +26,13 @@ def forest_path(player):
             player.update_location("avoid_path", avoid_path)
 
 def confront_path(player):
-    delayed_print("'Reveal yourself if you dare!' You shout out bravely.", 2, 0)
-    delayed_print("You hear the sound of twigs snapping as whatever it was retreats.", 2, 1)
+    delayed_print("'Reveal yourself if you dare!' You shout out bravely.", 1, 0)
+    delayed_print("You hear the sound of twigs snapping as whatever it was retreats.", 1, 1)
     player.update_courage(is_courageous=True)
     player.update_location("continuing_path", continuing_path)
 
 def avoid_path(player):
-    delayed_print("You sprint away. Whatever was spying on you has been left far behind...", 2, 1)
+    delayed_print("You sprint away. Whatever was spying on you has been left far behind...", 1, 1)
     player.update_courage(is_courageous=False)
     player.update_location("continuing_path", continuing_path)
 
@@ -38,7 +40,7 @@ def avoid_path(player):
 one of them has the courage attribute while the other doesn't"""
 
 def continuing_path(player):
-    delayed_print("As you continue walking down the path, you come up against a crossroads.")
+    delayed_print("As you continue walking down the path, you come up against a crossroads.", 1)
     fp_2 = get_valid_input("Where will you go?\n1. Left\n2. Right", [1, 2])
 
     if fp_2 == 1:
@@ -47,6 +49,41 @@ def continuing_path(player):
         player.update_location("continue_right", continue_right)
 
 def continue_left(player):
+    delayed_print("You chose the left path.", 1, 0)
+    delayed_print("As you walk along the long path, you come across a cave...", 1, 0)
+    fp_3 = get_valid_input("Do you:\n1. Enter\n2. Keep walking\n3. Think\n4. Go Back", [1,2,3])
+
+    if fp_3 == 1:
+        player.update_location("continue_cave", continue_cave)
+    elif fp_3 == 2:
+        player.update_location("continue_twice", continue_twice)
+    elif fp_3 == 3:
+        player.update_location("continue_think", continue_think)
+    elif fp_3 == 4:
+        if player.forest_attributes["smart"]:
+            delayed_print("You thought too long, and a tree has fallen down, blocking your path.")
+        player.update_location("continue_right", continue_right)
+
+def continue_think(player):
+    player.think += 1
+
+    match player.think:
+        case 1:
+            delayed_print("You think for a bit before making the decision.")
+
+        case 2:
+            delayed_print("You think even more before making the decision.")
+
+        case 3:
+            delayed_print("You think a lot before making the decision.")
+            player.update_smart(is_intelligent=True)
+
+    player.update_location("continue_left", continue_left)
+
+def continue_cave(player):
+    pass
+
+def continue_twice(player):
     pass
 
 def continue_right(player):

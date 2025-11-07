@@ -31,6 +31,8 @@ class Player:
         self.last_forest_location = ""
         self.last_city_location = ""
 
+        self.think = 0
+
     # For ONLY the self.attributes
     def update_attributes(self, attribute, value):
         if attribute in self.attributes:

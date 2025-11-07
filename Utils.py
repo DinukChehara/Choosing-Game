@@ -2,15 +2,15 @@ import time
 import importlib
 
 # prints a message with a delay and blank lines
-def delayed_print(message="", delay=1.5, blank_lines=0):
+def delayed_print(message="", delay=2, blank_lines=0):
     print(message)
     time.sleep(delay)
     if blank_lines > 0:
         print("\n" * blank_lines, end="")
 
 def get_valid_input(prompt, valid_choices):
+    prompt += "\n\nYou Pick: "
     while True:
-        prompt += "\n\nYou Pick: "
         try:
             choice = int(input(prompt))
             if choice in valid_choices:
